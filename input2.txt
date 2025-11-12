@@ -1,0 +1,6 @@
+V: A, E, I, O, U, Y
+C: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Z
+1. VCVCV
+2. CVCVC
+3. CCVCC
+4. VVVVV

@@ -1,0 +1,5 @@
+L: Q, W, E, R, T, A, S, D, F, G, Z, X, C, V, B
+R: Y, U, I, O, P, H, J, K, L, N, M
+1. LRLR
+2. RRRR
+3. LLLL
