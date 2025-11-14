@@ -12,10 +12,10 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     ArgumentManager am(argc, argv);
-    //ifstream fin(am.get("input"));
-    //ofstream fout(am.get("output"));
-    ifstream fin("input3.txt");
-    ofstream fout("output3.txt");
+    ifstream fin(am.get("input"));
+    ofstream fout(am.get("output"));
+    //ifstream fin("input3.txt");
+    //ofstream fout("output3.txt");
     ifstream yawl("yawl.txt");
 
 
