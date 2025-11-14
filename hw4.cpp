@@ -2,7 +2,9 @@
 #include <fstream>
 #include <list>
 #include <string>
+#include <vector>
 #include "BinaryTree.h"
+#include "ListTree.h"
 #include "ArgumentManager.h"
 
 using namespace std;
@@ -12,18 +14,20 @@ int main(int argc, char *argv[])
     ArgumentManager am(argc, argv);
     //ifstream fin(am.get("input"));
     //ofstream fout(am.get("output"));
-    ifstream fin("input1.txt");
-    ofstream fout("output1.txt");
+    ifstream fin("input3.txt");
+    ofstream fout("output3.txt");
     ifstream yawl("yawl.txt");
 
 
-    int maxWordLength;
-    list<char> setOne;
-    list<char> setTwo;
-    //Take in first two lines, Create 2 sets of characters based off input
+    int maxWordLength = 0;
+    vector<char> setOne;
+    vector<char> setTwo;
+    ListTree listtree;
 
+    //Take in first two lines, Create 2 sets of characters based off input
     string lineOne;
     getline(fin, lineOne);
+    char labelOne = lineOne[0];
     for(int i = 2; i < lineOne.length(); i++)
     {
         if(lineOne[i] != ',' && lineOne[i] != ' ')
@@ -34,6 +38,7 @@ int main(int argc, char *argv[])
 
     string lineTwo;
     getline(fin,lineTwo);
+    char labelTwo = lineTwo[0];
     for(int i = 2; i < lineTwo.length(); i++)
     {
         if(lineTwo[i] != ',' && lineTwo[i] != ' ')
@@ -41,8 +46,33 @@ int main(int argc, char *argv[])
             setTwo.push_back(lineTwo[i]);
         }
     }
+    int count = 1;
+    string patternLine;
+    while(getline(fin, patternLine))
+    {
+        string pattern = patternLine.substr(3, patternLine.length() -1);
+        if(pattern.length() > maxWordLength)
+        {maxWordLength = pattern.length();}
 
-    
+        string currentWord;
+        while(yawl >> currentWord)
+        {
+            listtree.Insert(currentWord, setOne, setTwo, maxWordLength);
+        }
+
+        cout << count << ". ";
+        fout << count << ". ";
+        listtree.Print(pattern, labelOne, labelTwo, fout);
+        cout << endl;
+        fout << endl;
+        count++;
+        //cout << pattern << endl;
+        //cout << maxWordLength << endl;
+    }
+
+
+
+/*
     for(char value : setOne)
     {
         cout << value << ", ";
@@ -52,14 +82,16 @@ int main(int argc, char *argv[])
     {
         cout << value << ", ";
     }
-    //Create binary tree of lists, with an empty list for the root
-    BinaryTree<list<string>> words;
+*/
 
-    //Left Child is words containing 1-letter words from setOne, Right child is 1-letter words from setTwo
-    //Each new layer increases word length by one while following this same rule of "left = set1, right = set2"
+/*
+    
+    string currentWord;
+    while(yawl >> currentWord)
+    {
+        listtree.Insert(currentWord, setOne, setTwo);
+    }
+*/
 
-    //Then populate the lists with their proper entries from the yawl.txt
-
-    //Then read in the next lines, and print out their associated list from the tree
     return 0;
 }

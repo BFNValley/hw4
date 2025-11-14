@@ -20,11 +20,8 @@ public:
     bool Find(T value);              // Return true if the value is found
     bool IsEmpty();                  // True if the list is currently empty
     void Preorder(ostream& out);     // Output the pre-order traversal
-   //void PreorderHelp(ostream& out, TreeNode<T>* node);
     void Inorder(ostream& out);      // Output the in-order traversal
-    //void InorderHelp(ostream& out, TreeNode<T>* node);
     void Postorder(ostream& out);    // Output the post-order traversal
-    //void PostorderHelp(ostream& out, TreeNode<T>* node);
     bool Remove(T value);            // Find the value and remove the value; true if successful
 
 private:
